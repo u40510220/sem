@@ -9,5 +9,3 @@
     - SQL scripts
 
 4. Assign tasks & develop a way of project tracking
-
-
