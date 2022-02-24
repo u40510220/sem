@@ -24,6 +24,9 @@ public class App
         String territory;
         int topFilter;
 
+
+        //TODO: Add validation for inputs(easy)
+        //Ask user to decide between all reports
         System.out.println("""
                 1) All the countries in the world organised by largest population to smallest
                 2) All the countries in a continent organised by largest population to smallest
@@ -53,6 +56,8 @@ public class App
                 26) Additional information reports
                 Enter the report number here:""");
         int a = scanner.nextInt();
+
+        //Ask again but for special reports
         if (a == 26){
 
             System.out.println("""
@@ -66,6 +71,8 @@ public class App
                     Enter the report number here:""");
             a = 30 + scanner.nextInt();
         }
+
+        //get the territory type specification
         if ( a == 1|| a == 4|| a == 7|| a == 12|| a == 17|| a == 20|| a == 31|| a == 37){
             territory = "WORLD";
         }
@@ -94,6 +101,8 @@ public class App
             territory = "no territory";
         }
 
+        //If report requires a number for top results asks for one, else number will be 0
+        //TODO: 0 must be recognised as no top filter in the code that gets this information
         if (a == 4|| a == 5|| a == 6|| a == 12| a == 2613|| a == 14|| a == 15|| a == 16|| a == 20|| a == 21|| a == 22){
             System.out.println("How many results from the top would you like to get: ");
             topFilter = scanner.nextInt();
@@ -102,6 +111,7 @@ public class App
             topFilter = 0;
         }
 
+        //Quick system out to ckeck it is working
         System.out.println("The report number: " + a + ", will be displayed about territory: " + territory + ", filtering the top: " + topFilter + " results.");
 
 
