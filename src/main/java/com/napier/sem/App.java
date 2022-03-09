@@ -1,11 +1,13 @@
 package com.napier.sem;
 
 
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoCollection;
-import org.bson.Document;
+//import com.mongodb.MongoClient;
+//import com.mongodb.client.MongoDatabase;
+//import com.mongodb.client.MongoCollection;
+//import org.bson.Document;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -24,7 +26,19 @@ public class App
         String territory;
         int topFilter;
 
-
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }catch(Exception e){
+            System.out.println("hi1");
+        }
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/var/run/mysqld/mysqld.sock", "root", "coursework")) {
+            // use con here
+        }
+        catch(Exception e){
+            System.out.println("hi2");
+        }
+        //return;
+        int aa = scanner.nextInt();
         //TODO: Add validation for inputs(easy)
         //Ask user to decide between all reports
         System.out.println("""
