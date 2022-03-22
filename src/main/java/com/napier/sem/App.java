@@ -154,7 +154,7 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            //TODO
+            //TODO quite a lot
             String strSelect =
                     "SELECT emp_no, first_name, last_name "
                             + "FROM employees "
