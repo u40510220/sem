@@ -6,9 +6,7 @@ package com.napier.sem;
 //import com.mongodb.client.MongoCollection;
 //import org.bson.Document;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -32,13 +30,16 @@ public class App
         int topFilter;
 
         // Create new Application
-        App a = new App();
+        App app = new App();
 
         // Connect to database
-        a.connect();
-
+        app.connect();
+        // Get Employee
+        Employee emp = app.getEmployee(255530);
+        // Display results
+        app.displayEmployee(emp);
         // Disconnect from database
-        a.disconnect();
+        app.disconnect();
 
         //return;
         int aa = scanner.nextInt();
@@ -135,6 +136,55 @@ public class App
 
 
 
+    }
+
+    public void displayEmployee(Employee emp)
+    {
+        if (emp != null)
+        {
+            System.out.println(
+                    emp.emp_no + " "
+                            + emp.first_name + " "
+                            + emp.last_name + "\n"
+                            + emp.title + "\n"
+                            + "Salary:" + emp.salary + "\n"
+                            + emp.dept_name + "\n"
+                            + "Manager: " + emp.manager + "\n");
+        }
+    }
+
+    public Employee getEmployee(int ID)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT emp_no, first_name, last_name "
+                            + "FROM employees "
+                            + "WHERE emp_no = " + ID;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next())
+            {
+                Employee emp = new Employee();
+                emp.emp_no = rset.getInt("emp_no");
+                emp.first_name = rset.getString("first_name");
+                emp.last_name = rset.getString("last_name");
+                return emp;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            return null;
+        }
     }
 
     /**
