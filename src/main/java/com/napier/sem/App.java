@@ -35,14 +35,14 @@ public class App
         // Connect to database
         app.connect();
         // Get Employee
-        Employee emp = app.getEmployee(255530);
+        Report emp = app.getReport(255530);
         // Display results
-        app.displayEmployee(emp);
+        app.displayReport(emp);
         // Disconnect from database
         app.disconnect();
 
         //return;
-        int aa = scanner.nextInt();
+
         //TODO: Add validation for inputs(easy)
         //Ask user to decide between all reports
         System.out.println("""
@@ -138,28 +138,23 @@ public class App
 
     }
 
-    public void displayEmployee(Employee emp)
+    public void displayReport(Report emp)
     {
         if (emp != null)
         {
-            System.out.println(
-                    emp.emp_no + " "
-                            + emp.first_name + " "
-                            + emp.last_name + "\n"
-                            + emp.title + "\n"
-                            + "Salary:" + emp.salary + "\n"
-                            + emp.dept_name + "\n"
-                            + "Manager: " + emp.manager + "\n");
+            System.out.println("something");
+            //display report
         }
     }
 
-    public Employee getEmployee(int ID)
+    public Report getReport(int ID)
     {
         try
         {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
+            //TODO
             String strSelect =
                     "SELECT emp_no, first_name, last_name "
                             + "FROM employees "
@@ -170,11 +165,9 @@ public class App
             // Check one is returned
             if (rset.next())
             {
-                Employee emp = new Employee();
-                emp.emp_no = rset.getInt("emp_no");
-                emp.first_name = rset.getString("first_name");
-                emp.last_name = rset.getString("last_name");
-                return emp;
+                Report report = new Report();
+                //TODO
+                return report;
             }
             else
                 return null;
@@ -182,7 +175,7 @@ public class App
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get report details");
             return null;
         }
     }
@@ -212,7 +205,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
