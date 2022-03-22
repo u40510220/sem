@@ -36,7 +36,6 @@ public class App
 
         // Connect to database
         app.connect();
-        // Get Employee
         //Report emp = app.getReport(255530);
         // Display results
         //app.displayReport(emp);
@@ -157,7 +156,6 @@ public class App
         System.out.println("The report number: " + a + ", will be displayed about territory: " + territory + ", filtering the top: " + topFilter + " results.");
 
         //TODO call functions to generate report
-
 
 
     }
