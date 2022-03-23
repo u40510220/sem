@@ -34,10 +34,13 @@ public class App
 
         // Connect to database
         app.connect();
+        System.out.println("hi there2");
         // Get Employee
-        Employee emp = app.getEmployee(255530);
+        //Employee emp = app.getEmployee2(255530);
+        app.Q1();
+        System.out.println("hi there");
         // Display results
-        app.displayEmployee(emp);
+        //app.displayEmployee(emp);
         // Disconnect from database
         app.disconnect();
 
@@ -138,6 +141,113 @@ public class App
 
     }
 
+
+    public void Q1()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Name " +"From country " + "Order By country.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+            //return employees;
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    public void getEmployee3()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            //String strSelect="SHOW TABLES";
+            String strSelect="Select Name " +"From country " + "Order By country.Population Desc";
+
+
+            //city
+                //  CountryCode
+                //  District
+                //  ID
+                //  Name
+                //  Population
+            //country
+                //  Capital
+                //  Code
+                //  Code2
+                //  Continent
+                //  GNP
+                //  GNPOld
+                //  GovernmentForm
+                //  HeadOfState
+                //  IndepYear
+                //  LifeExpectancy
+                //  LocalName
+                //  Name
+                //  Population
+                //  Region
+                //  SurfaceArea
+
+            //countrylanguage
+                //  CountryCode
+                //  Language
+                //  IsOfficial
+                //  Percentage
+
+            //String strSelect= "SELECT TABLE_NAME " +
+            //        "FROM INFORMATION_SCHEMA.TABLES " +
+            //        "WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG='world'";
+
+            //String strSelect =
+            //        "SELECT emp_no, first_name, last_name "
+            //                + "FROM employees "
+            //                + "WHERE emp_no = " + ID;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+
+            ResultSetMetaData rsmd = rset.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            while (rset.next()) {
+                for (int i = 1; i <= columnsNumber; i++) {
+                    if (i > 1) System.out.print(",  ");
+                    String columnValue = rset.getString(i);
+                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                }
+                System.out.println("");
+            }
+
+            //if (rset.next())
+            //{
+            //    //rset.
+            //    Employee emp = new Employee();
+            //    emp.emp_no = rset.getInt("emp_no");
+            //    emp.first_name = rset.getString("first_name");
+            //    emp.last_name = rset.getString("last_name");
+            //    return emp;
+            //}
+            //else
+            //    return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get employee details");
+            //return null;
+        }
+    }
+
     public void displayEmployee(Employee emp)
     {
         if (emp != null)
@@ -212,7 +322,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
