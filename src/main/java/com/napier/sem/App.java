@@ -248,8 +248,9 @@ public class App
         }
     }
 
-    public void displayEmployee(Employee emp)
+    public void displayEmployee(Report emp)
     {
+        /*
         if (emp != null)
         {
             System.out.println(
@@ -261,10 +262,13 @@ public class App
                             + emp.dept_name + "\n"
                             + "Manager: " + emp.manager + "\n");
         }
-    }
 
-    public Employee getEmployee(int ID)
+         */
+    }
+/*
+    public Report getEmployee(int ID)
     {
+
         try
         {
             // Create an SQL statement
@@ -278,6 +282,7 @@ public class App
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
             // Check one is returned
+
             if (rset.next())
             {
                 Employee emp = new Employee();
@@ -295,8 +300,10 @@ public class App
             System.out.println("Failed to get employee details");
             return null;
         }
-    }
 
+
+    }
+*/
     /**
      * Connect to the MySQL database.
      */
