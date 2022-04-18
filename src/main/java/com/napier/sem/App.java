@@ -164,6 +164,422 @@ public class App
         }
     }
 
+    public void Q2(String Continent)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Name,Continent " +"From country WHERE Continent='"+Continent+"' " + "Order By country.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+
+            }
+            //return employees;
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    public void Q3(String Region)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Name,Continent " +"From country WHERE Region='"+Region+"' " + "Order By country.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+
+            }
+            //return employees;
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    public void Q4(int n)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Name " +"From country " + "Order By country.Population Desc "+" LIMIT "+Integer.toString(n);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+            //return employees;
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    public void Q5(String Continent,int n)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Name " +"From country WHERE Continent='"+Continent+"'  " + "Order By country.Population Desc "+" LIMIT "+Integer.toString(n);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+            //return employees;
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    public void Q6(String Region,int n)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Name " +"From country WHERE Region='"+Region+"'  " + "Order By country.Population Desc "+" LIMIT "+Integer.toString(n);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+            //return employees;
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    public void Q7()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Name " +"From city " + "Order By city.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {}
+    }
+
+    public void Q8(String Continent)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT c.Name FROM country m INNER JOIN city c ON c.CountryCode = m.Code WHERE m.Continent='"+Continent+"' Order by c.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q9(String Region)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT c.Name FROM country m INNER JOIN city c ON c.CountryCode = m.Code WHERE m.Region='"+Region+"' Order by c.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q10(String Country)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT c.Name FROM country m INNER JOIN city c ON c.CountryCode = m.Code WHERE m.Name='"+Country+"' Order by c.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q11(String District)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Name " +"From city WHERE District='"+District+"' " + "Order By city.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {}
+    }
+
+    public void Q12(int n)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Name " +"From city " + "Order By city.Population Desc"+" LIMIT "+Integer.toString(n);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {}
+    }
+
+    public void Q13(String Continent,int n)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT c.Name FROM country m INNER JOIN city c ON c.CountryCode = m.Code WHERE m.Continent='"+Continent+"' Order by c.Population Desc"+" LIMIT "+Integer.toString(n);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q14(String Region,int n)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT c.Name FROM country m INNER JOIN city c ON c.CountryCode = m.Code WHERE m.Region='"+Region+"' Order by c.Population Desc"+" LIMIT "+Integer.toString(n);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q15(String Country,int n)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT c.Name FROM country m INNER JOIN city c ON c.CountryCode = m.Code WHERE m.Name='"+Country+"' Order by c.Population Desc"+" LIMIT "+Integer.toString(n);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q16(String District,int n)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Name " +"From city WHERE District='"+District+"' " + "Order By city.Population Desc"+" LIMIT "+Integer.toString(n);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {}
+    }
+
+    public void Q17()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT c.Name FROM country m INNER JOIN city c ON c.ID = m.Capital Order by c.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q18(String Continent)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT c.Name FROM country m INNER JOIN city c ON c.ID = m.Capital WHERE m.Continent='"+Continent+"' Order by c.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q19(String Region)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT c.Name FROM country m INNER JOIN city c ON c.ID = m.Capital WHERE m.Region='"+Region+"' Order by c.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q20(int n)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT c.Name FROM country m INNER JOIN city c ON c.ID = m.Capital Order by c.Population Desc"+" LIMIT "+Integer.toString(n);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q21(String Continent,int n)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT c.Name FROM country m INNER JOIN city c ON c.ID = m.Capital WHERE m.Continent='"+Continent+"' Order by c.Population Desc"+" LIMIT "+Integer.toString(n);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q22(String Region,int n)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT c.Name FROM country m INNER JOIN city c ON c.ID = m.Capital WHERE m.Region='"+Region+"' Order by c.Population Desc"+" LIMIT "+Integer.toString(n);
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
     public void getEmployee3()
     {
         try
