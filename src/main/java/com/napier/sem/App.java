@@ -769,7 +769,10 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect="";
+            String strSelect="Select Language, Sum(percentage)\n" +
+                    "From CountryLanguage \n" +
+                    "Where language = \"Chinese\" OR language = \"English\" OR language = \"Hindi\" OR language = \"Spanish\" OR language = \"Arabic\"\n" +
+                    "Group by Language\n";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
