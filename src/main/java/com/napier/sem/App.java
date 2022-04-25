@@ -579,147 +579,70 @@ public class App
         }
         catch (Exception e) {System.out.println(e.getMessage());}
     }
-
-    public void getEmployee3()
+    public void Q23()
     {
         try
         {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            //String strSelect="SHOW TABLES";
-            String strSelect="Select Name " +"From country " + "Order By country.Population Desc";
-
-
-            //city
-                //  CountryCode
-                //  District
-                //  ID
-                //  Name
-                //  Population
-            //country
-                //  Capital
-                //  Code
-                //  Code2
-                //  Continent
-                //  GNP
-                //  GNPOld
-                //  GovernmentForm
-                //  HeadOfState
-                //  IndepYear
-                //  LifeExpectancy
-                //  LocalName
-                //  Name
-                //  Population
-                //  Region
-                //  SurfaceArea
-
-            //countrylanguage
-                //  CountryCode
-                //  Language
-                //  IsOfficial
-                //  Percentage
-
-            //String strSelect= "SELECT TABLE_NAME " +
-            //        "FROM INFORMATION_SCHEMA.TABLES " +
-            //        "WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG='world'";
-
-            //String strSelect =
-            //        "SELECT emp_no, first_name, last_name "
-            //                + "FROM employees "
-            //                + "WHERE emp_no = " + ID;
+            String strSelect="SELECT country.Continent, SUM(distinct country.population) AS \"Total population\" , SUM(distinct city.population) AS \"Poppulation in cities\", (SUM(Distinct country.population)-SUM(distinct city.population)) AS \"Population outside cities\" \n" +
+                    "FROM city Right JOIN country ON city.CountryCode = country.Code\n" +
+                    "GROUP BY country.Continent\n" +
+                    "ORDER BY SUM(country.population) DESC;";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
-            // Check one is returned
 
-            ResultSetMetaData rsmd = rset.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-            while (rset.next()) {
-                for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
-                    String columnValue = rset.getString(i);
-                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
-                }
-                System.out.println("");
-            }
-
-            //if (rset.next())
-            //{
-            //    //rset.
-            //    Employee emp = new Employee();
-            //    emp.emp_no = rset.getInt("emp_no");
-            //    emp.first_name = rset.getString("first_name");
-            //    emp.last_name = rset.getString("last_name");
-            //    return emp;
-            //}
-            //else
-            //    return null;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
-            //return null;
-        }
-    }
-
-    public void displayEmployee(Report emp)
-    {
-        /*
-        if (emp != null)
-        {
-            System.out.println(
-                    emp.emp_no + " "
-                            + emp.first_name + " "
-                            + emp.last_name + "\n"
-                            + emp.title + "\n"
-                            + "Salary:" + emp.salary + "\n"
-                            + emp.dept_name + "\n"
-                            + "Manager: " + emp.manager + "\n");
-        }
-
-         */
-    }
-/*
-    public Report getEmployee(int ID)
-    {
-
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT emp_no, first_name, last_name "
-                            + "FROM employees "
-                            + "WHERE emp_no = " + ID;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
-            // Check one is returned
-
-            if (rset.next())
+            while (rset.next())
             {
-                Employee emp = new Employee();
-                emp.emp_no = rset.getInt("emp_no");
-                emp.first_name = rset.getString("first_name");
-                emp.last_name = rset.getString("last_name");
-                return emp;
+                System.out.println(rset.getString("Name"));
             }
-            else
-                return null;
         }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
-            return null;
-        }
-
-
+        catch (Exception e) {System.out.println(e.getMessage());}
     }
-*/
+    public void Q24()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT country.Region, SUM(distinct country.population) AS \"Total population\" , SUM(distinct city.population) AS \"Poppulation in cities\", (SUM(distinct country.population)-SUM(distinct city.population)) AS \"Population outside cities\" \n" +
+                    "FROM city Right JOIN country ON city.CountryCode = country.Code\n" +
+                    "GROUP BY country.Region\n" +
+                    "ORDER BY SUM(distinct country.population) DESC;";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q25()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT country.Name, country.population AS \"Total population\", SUM(Distinct city.population) AS \"Poppulation in cities\", (country.population-SUM(Distinct city.population)) AS \"Population outside cities\"   \n" +
+                    "FROM city left JOIN country ON city.CountryCode = country.Code  \n" +
+                    "GROUP BY CountryCode \n" +
+                    "ORDER BY country.population DESC;\n";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
     /**
      * Connect to the MySQL database.
      */
@@ -745,13 +668,13 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root","example");
                 System.out.println("Successfully connected");
                 break;
             }
             catch (SQLException sqle)
             {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println("Failed to connect to database attempt " + Integer.toString(i)+1);
                 System.out.println(sqle.getMessage());
             }
             catch (InterruptedException ie)
