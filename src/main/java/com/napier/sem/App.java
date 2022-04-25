@@ -89,7 +89,7 @@ public class App
                     5) Population of a district
                     6) Population od a city
                     7) Language report
-                    Enter the report number here:""");
+                    Enter the report number here: """);
             a = 30 + scanner.nextInt();
         }
 
@@ -642,6 +642,146 @@ public class App
         }
         catch (Exception e) {System.out.println(e.getMessage());}
     }
+    public void Q31()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select sum(population)\n" +
+                    "from country";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q32(String Continent)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select sum(population)\n" +
+                    "from country\n" +
+                    "where continent = "+ Continent;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q33(String Region)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select sum(population)\n" +
+                    "from country\n" +
+                    "where region = " + Region;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q34(String Country)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select sum(population)\n" +
+                    "from country\n" +
+                    "where name = " + Country;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q35(String District)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select sum(Distinct country.population)\n" +
+                    "from country join city on country.code = city.countrycode\n" +
+                    "where district = " + District;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q36(String City)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select sum(Distinct population)\n" +
+                    "from city\n" +
+                    "where name = " + City;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q37()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+
 
     /**
      * Connect to the MySQL database.
