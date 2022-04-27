@@ -25,10 +25,6 @@ public class App
     private Connection con = null;
     public static void main(String[] args)
     {
-        Scanner scanner = new Scanner(System.in);
-        String territory;
-        int topFilter;
-
         // Create new Application
         App app = new App();
 
@@ -37,13 +33,16 @@ public class App
         System.out.println("hi there2");
         // Get Employee
         //Employee emp = app.getEmployee2(255530);
-        app.Q1();
+        app.RunAll();
         System.out.println("hi there");
         // Display results
         //app.displayEmployee(emp);
         // Disconnect from database
         app.disconnect();
-
+        if (true){ return;}
+        Scanner scanner = new Scanner(System.in);
+        String territory;
+        int topFilter;
         //return;
         int aa = scanner.nextInt();
         //TODO: Add validation for inputs(easy)
@@ -89,7 +88,7 @@ public class App
                     5) Population of a district
                     6) Population od a city
                     7) Language report
-                    Enter the report number here:""");
+                    Enter the report number here: """);
             a = 30 + scanner.nextInt();
         }
 
@@ -141,6 +140,106 @@ public class App
 
     }
 
+    public void RunAll(){
+        System.out.println("All the countries in the world organised by largest population to smallest.\n");
+        Q1();
+        System.out.println("All the countries in a continent organised by largest population to smallest.\n");
+        Q2("Europe");
+        System.out.println("All the countries in a region organised by largest population to smallest.\n");
+
+        Q3("Polynesia");
+
+        System.out.println("The top N populated countries in the world where N is provided by the user.\n");
+        Q4(3);
+
+        System.out.println("The top N populated countries in a continent where N is provided by the user.\n");
+        Q5("Europe",6);
+
+        System.out.println("The top N populated countries in a region where N is provided by the user.\n");
+        Q6("Polynesia",3);
+
+        System.out.println("All the cities in the world organised by largest population to smallest.\n");
+        Q7();
+
+        System.out.println("All the cities in a continent organised by largest population to smallest.\n");
+        Q8("Europe");
+
+        System.out.println("All the cities in a region organised by largest population to smallest.\n");
+        Q9("Polynesia");
+
+        System.out.println("All the cities in a country organised by largest population to smallest.\n");
+        Q10("China");
+        System.out.println("All the cities in a district organised by largest population to smallest.\n");
+        Q11("Shanghai");
+        System.out.println("The top N populated cities in the world where N is provided by the user.\n");
+        Q12(4);
+        System.out.println("The top N populated cities in a continent where N is provided by the user.\n");
+        Q13("Europe",6);
+        System.out.println("The top N populated cities in a region where N is provided by the user.\n");
+        Q14("Polynesia",5);
+        System.out.println("The top N populated cities in a country where N is provided by the user.\n");
+        Q15("China",2);
+        System.out.println("The top N populated cities in a district where N is provided by the user.\n");
+        Q16("Shanghai",2);
+        System.out.println("All the capital cities in the world organised by largest population to smallest.\n");
+        Q17();
+        System.out.println("All the capital cities in a continent organised by largest population to smallest.\n");
+        Q18("Europe");
+        System.out.println("All the capital cities in a region organised by largest to smallest.\n");
+        Q19("Polynesia");
+        System.out.println("The top N populated capital cities in the world where N is provided by the user.\n");
+        Q20(3);
+        System.out.println("The top N populated capital cities in a continent where N is provided by the user.\n");
+        Q21("Europe",4);
+        System.out.println("The top N populated capital cities in a region where N is provided by the user.\n");
+        Q22("Polynesia",6);
+        System.out.println("The population of people, people living in cities, and people not living in cities in each continent.\n");
+        Q23();
+        System.out.println("The population of people, people living in cities, and people not living in cities in each region.\n");
+        Q24();
+        System.out.println("The population of people, people living in cities, and people not living in cities in each country.\n");
+        Q25();
+        System.out.println("The population of the world.\n");
+        Q31();
+        System.out.println("The population of a continent.\n");
+        Q32("Europe");
+        System.out.println("The population of a region.\n");
+        Q33("Polynesia");
+        System.out.println("The population of a country.\n");
+        Q34("China");
+        System.out.println("The population of a district.\n");
+        Q35("Shanghai");
+        System.out.println("The population of a city.\n");
+        Q36("Tokyo");
+        System.out.println("The language report\n");
+        Q37();
+
+
+
+
+    }
+
+    public void Q0()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Name,District " +"From city " + "Order By city.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("District"));
+            }
+            //return employees;
+        }
+        catch (Exception e)
+        {
+        }
+    }
 
     public void Q1()
     {
@@ -579,147 +678,213 @@ public class App
         }
         catch (Exception e) {System.out.println(e.getMessage());}
     }
-
-    public void getEmployee3()
+    public void Q23()
     {
         try
         {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            //String strSelect="SHOW TABLES";
-            String strSelect="Select Name " +"From country " + "Order By country.Population Desc";
-
-
-            //city
-                //  CountryCode
-                //  District
-                //  ID
-                //  Name
-                //  Population
-            //country
-                //  Capital
-                //  Code
-                //  Code2
-                //  Continent
-                //  GNP
-                //  GNPOld
-                //  GovernmentForm
-                //  HeadOfState
-                //  IndepYear
-                //  LifeExpectancy
-                //  LocalName
-                //  Name
-                //  Population
-                //  Region
-                //  SurfaceArea
-
-            //countrylanguage
-                //  CountryCode
-                //  Language
-                //  IsOfficial
-                //  Percentage
-
-            //String strSelect= "SELECT TABLE_NAME " +
-            //        "FROM INFORMATION_SCHEMA.TABLES " +
-            //        "WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_CATALOG='world'";
-
-            //String strSelect =
-            //        "SELECT emp_no, first_name, last_name "
-            //                + "FROM employees "
-            //                + "WHERE emp_no = " + ID;
+            String strSelect="SELECT country.Continent, SUM(distinct country.population) AS \"Total population\" , SUM(distinct city.population) AS \"Poppulation in cities\", (SUM(Distinct country.population)-SUM(distinct city.population)) AS \"Population outside cities\" \n" +
+                    "FROM city Right JOIN country ON city.CountryCode = country.Code\n" +
+                    "GROUP BY country.Continent\n" +
+                    "ORDER BY SUM(country.population) DESC;";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
-            // Check one is returned
 
-            ResultSetMetaData rsmd = rset.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-            while (rset.next()) {
-                for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
-                    String columnValue = rset.getString(i);
-                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
-                }
-                System.out.println("");
-            }
-
-            //if (rset.next())
-            //{
-            //    //rset.
-            //    Employee emp = new Employee();
-            //    emp.emp_no = rset.getInt("emp_no");
-            //    emp.first_name = rset.getString("first_name");
-            //    emp.last_name = rset.getString("last_name");
-            //    return emp;
-            //}
-            //else
-            //    return null;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
-            //return null;
-        }
-    }
-
-    public void displayEmployee(Report emp)
-    {
-        /*
-        if (emp != null)
-        {
-            System.out.println(
-                    emp.emp_no + " "
-                            + emp.first_name + " "
-                            + emp.last_name + "\n"
-                            + emp.title + "\n"
-                            + "Salary:" + emp.salary + "\n"
-                            + emp.dept_name + "\n"
-                            + "Manager: " + emp.manager + "\n");
-        }
-
-         */
-    }
-/*
-    public Report getEmployee(int ID)
-    {
-
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT emp_no, first_name, last_name "
-                            + "FROM employees "
-                            + "WHERE emp_no = " + ID;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
-            // Check one is returned
-
-            if (rset.next())
+            while (rset.next())
             {
-                Employee emp = new Employee();
-                emp.emp_no = rset.getInt("emp_no");
-                emp.first_name = rset.getString("first_name");
-                emp.last_name = rset.getString("last_name");
-                return emp;
+                System.out.println(rset.getString("Name"));
             }
-            else
-                return null;
         }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
-            return null;
-        }
-
-
+        catch (Exception e) {System.out.println(e.getMessage());}
     }
-*/
+    public void Q24()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT country.Region, SUM(distinct country.population) AS \"Total population\" , SUM(distinct city.population) AS \"Poppulation in cities\", (SUM(distinct country.population)-SUM(distinct city.population)) AS \"Population outside cities\" \n" +
+                    "FROM city Right JOIN country ON city.CountryCode = country.Code\n" +
+                    "GROUP BY country.Region\n" +
+                    "ORDER BY SUM(distinct country.population) DESC;";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q25()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="SELECT country.Name, country.population AS \"Total population\", SUM(Distinct city.population) AS \"Poppulation in cities\", (country.population-SUM(Distinct city.population)) AS \"Population outside cities\"   \n" +
+                    "FROM city left JOIN country ON city.CountryCode = country.Code  \n" +
+                    "GROUP BY CountryCode \n" +
+                    "ORDER BY country.population DESC;\n";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q31()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select sum(population)\n" +
+                    "from country";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q32(String Continent)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select sum(population)\n" +
+                    "from country\n" +
+                    "where continent = "+ Continent;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q33(String Region)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select sum(population)\n" +
+                    "from country\n" +
+                    "where region = " + Region;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q34(String Country)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select sum(population)\n" +
+                    "from country\n" +
+                    "where name = " + Country;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q35(String District)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select sum(Distinct country.population)\n" +
+                    "from country join city on country.code = city.countrycode\n" +
+                    "where district = " + District;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+    public void Q36(String City)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select sum(Distinct population)\n" +
+                    "from city\n" +
+                    "where name = " + City;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+    public void Q37()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Language, Sum(percentage)\n" +
+                    "From CountryLanguage \n" +
+                    "Where language = \"Chinese\" OR language = \"English\" OR language = \"Hindi\" OR language = \"Spanish\" OR language = \"Arabic\"\n" +
+                    "Group by Language\n";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("Name"));
+            }
+        }
+        catch (Exception e) {System.out.println(e.getMessage());}
+    }
+
+
+
     /**
      * Connect to the MySQL database.
      */
@@ -745,13 +910,13 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root","example");
                 System.out.println("Successfully connected");
                 break;
             }
             catch (SQLException sqle)
             {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println("Failed to connect to database attempt " + Integer.toString(i)+1);
                 System.out.println(sqle.getMessage());
             }
             catch (InterruptedException ie)
