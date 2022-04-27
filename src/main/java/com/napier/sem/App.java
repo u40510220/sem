@@ -141,37 +141,77 @@ public class App
     }
 
     public void RunAll(){
+        System.out.println("All the countries in the world organised by largest population to smallest.\n");
         Q1();
+        System.out.println("All the countries in a continent organised by largest population to smallest.\n");
         Q2("Europe");
+        System.out.println("All the countries in a region organised by largest population to smallest.\n");
+
         Q3("Polynesia");
+
+        System.out.println("The top N populated countries in the world where N is provided by the user.\n");
         Q4(3);
+
+        System.out.println("The top N populated countries in a continent where N is provided by the user.\n");
         Q5("Europe",6);
+
+        System.out.println("The top N populated countries in a region where N is provided by the user.\n");
         Q6("Polynesia",3);
+
+        System.out.println("All the cities in the world organised by largest population to smallest.\n");
         Q7();
+
+        System.out.println("All the cities in a continent organised by largest population to smallest.\n");
         Q8("Europe");
+
+        System.out.println("All the cities in a region organised by largest population to smallest.\n");
         Q9("Polynesia");
+
+        System.out.println("All the cities in a country organised by largest population to smallest.\n");
         Q10("China");
+        System.out.println("All the cities in a district organised by largest population to smallest.\n");
         Q11("Shanghai");
+        System.out.println("The top N populated cities in the world where N is provided by the user.\n");
         Q12(4);
+        System.out.println("The top N populated cities in a continent where N is provided by the user.\n");
         Q13("Europe",6);
+        System.out.println("The top N populated cities in a region where N is provided by the user.\n");
         Q14("Polynesia",5);
+        System.out.println("The top N populated cities in a country where N is provided by the user.\n");
         Q15("China",2);
+        System.out.println("The top N populated cities in a district where N is provided by the user.\n");
         Q16("Shanghai",2);
+        System.out.println("All the capital cities in the world organised by largest population to smallest.\n");
         Q17();
+        System.out.println("All the capital cities in a continent organised by largest population to smallest.\n");
         Q18("Europe");
+        System.out.println("All the capital cities in a region organised by largest to smallest.\n");
         Q19("Polynesia");
+        System.out.println("The top N populated capital cities in the world where N is provided by the user.\n");
         Q20(3);
+        System.out.println("The top N populated capital cities in a continent where N is provided by the user.\n");
         Q21("Europe",4);
+        System.out.println("The top N populated capital cities in a region where N is provided by the user.\n");
         Q22("Polynesia",6);
+        System.out.println("The population of people, people living in cities, and people not living in cities in each continent.\n");
         Q23();
+        System.out.println("The population of people, people living in cities, and people not living in cities in each region.\n");
         Q24();
+        System.out.println("The population of people, people living in cities, and people not living in cities in each country.\n");
         Q25();
+        System.out.println("The population of the world.\n");
         Q31();
+        System.out.println("The population of a continent.\n");
         Q32("Europe");
+        System.out.println("The population of a region.\n");
         Q33("Polynesia");
+        System.out.println("The population of a country.\n");
         Q34("China");
+        System.out.println("The population of a district.\n");
         Q35("Shanghai");
+        System.out.println("The population of a city.\n");
         Q36("Tokyo");
+        System.out.println("The language report\n");
         Q37();
 
 
