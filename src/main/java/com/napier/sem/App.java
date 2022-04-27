@@ -25,9 +25,8 @@ public class App
     private Connection con = null;
     public static void main(String[] args)
     {
-        Scanner scanner = new Scanner(System.in);
-        String territory;
-        int topFilter;
+
+
 
         // Create new Application
         App app = new App();
@@ -37,13 +36,16 @@ public class App
         System.out.println("hi there2");
         // Get Employee
         //Employee emp = app.getEmployee2(255530);
-        app.Q1();
+        app.RunAll();
         System.out.println("hi there");
         // Display results
         //app.displayEmployee(emp);
         // Disconnect from database
         app.disconnect();
-
+        if (true){ return;}
+        Scanner scanner = new Scanner(System.in);
+        String territory;
+        int topFilter;
         //return;
         int aa = scanner.nextInt();
         //TODO: Add validation for inputs(easy)
@@ -141,6 +143,66 @@ public class App
 
     }
 
+    public void RunAll(){
+        Q1();
+        Q2("Europe");
+        Q3("Polynesia");
+        Q4(3);
+        Q5("Europe",6);
+        Q6("Polynesia",3);
+        Q7();
+        Q8("Europe");
+        Q9("Polynesia");
+        Q10("China");
+        Q11("Shanghai");
+        Q12(4);
+        Q13("Europe",6);
+        Q14("Polynesia",5);
+        Q15("China",2);
+        Q16("Shanghai",2);
+        Q17();
+        Q18("Europe");
+        Q19("Polynesia");
+        Q20(3);
+        Q21("Europe",4);
+        Q22("Polynesia",6);
+        Q23();
+        Q24();
+        Q25();
+        Q31();
+        Q32("Europe");
+        Q33("Polynesia");
+        Q34("China");
+        Q35("Shanghai");
+        Q36("Tokyo");
+        Q37();
+
+
+
+
+    }
+
+    public void Q0()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect="Select Name,District " +"From city " + "Order By city.Population Desc";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next())
+            {
+                System.out.println(rset.getString("District"));
+            }
+            //return employees;
+        }
+        catch (Exception e)
+        {
+        }
+    }
 
     public void Q1()
     {
