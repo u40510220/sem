@@ -25,9 +25,6 @@ public class App
     private Connection con = null;
     public static void main(String[] args)
     {
-
-
-
         // Create new Application
         App app = new App();
 
