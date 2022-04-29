@@ -685,7 +685,7 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect="SELECT country.Continent, SUM(distinct country.population) AS \"Total population\" , SUM(distinct city.population) AS \"Poppulation in cities\", (SUM(Distinct country.population)-SUM(distinct city.population)) AS \"Population outside cities\" \n" +
+            String strSelect="SELECT country.Continent, SUM(distinct country.population) AS \"Total population\" , SUM(distinct city.population) AS \"Population in cities\", (SUM(Distinct country.population)-SUM(distinct city.population)) AS \"Population outside cities\" \n" +
                     "FROM city Right JOIN country ON city.CountryCode = country.Code\n" +
                     "GROUP BY country.Continent\n" +
                     "ORDER BY SUM(country.population) DESC;";
@@ -694,7 +694,7 @@ public class App
 
             while (rset.next())
             {
-                System.out.println(rset.getString("Name"));
+                System.out.println(rset.getString("Continent")+rset.getString("Total population")+rset.getString("Population in cities")+rset.getString("Population outside cities"));
             }
         }
         catch (Exception e) {System.out.println(e.getMessage());}
@@ -706,16 +706,16 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect="SELECT country.Region, SUM(distinct country.population) AS \"Total population\" , SUM(distinct city.population) AS \"Poppulation in cities\", (SUM(distinct country.population)-SUM(distinct city.population)) AS \"Population outside cities\" \n" +
+            String strSelect="SELECT country.Region, SUM(distinct country.Population) AS \"Total population\" , SUM(distinct city.Population) AS \"Population in cities\", (SUM(distinct country.Population)-SUM(distinct city.Population)) AS \"Population outside cities\" \n" +
                     "FROM city Right JOIN country ON city.CountryCode = country.Code\n" +
                     "GROUP BY country.Region\n" +
-                    "ORDER BY SUM(distinct country.population) DESC;";
+                    "ORDER BY SUM(distinct country.Population) DESC;";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             while (rset.next())
             {
-                System.out.println(rset.getString("Name"));
+                System.out.println(rset.getString("Region")+rset.getString("Total population")+rset.getString("Population in cities")+rset.getString("Population outside cities"));
             }
         }
         catch (Exception e) {System.out.println(e.getMessage());}
@@ -727,16 +727,16 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect="SELECT country.Name, country.population AS \"Total population\", SUM(Distinct city.population) AS \"Poppulation in cities\", (country.population-SUM(Distinct city.population)) AS \"Population outside cities\"   \n" +
+            String strSelect="SELECT country.Name, country.Population AS \"Total population\", SUM(Distinct city.Population) AS \"Population in cities\", (country.Population-SUM(Distinct city.Population)) AS \"Population outside cities\"   \n" +
                     "FROM city left JOIN country ON city.CountryCode = country.Code  \n" +
                     "GROUP BY CountryCode \n" +
-                    "ORDER BY country.population DESC;\n";
+                    "ORDER BY country.Population DESC;\n";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             while (rset.next())
             {
-                System.out.println(rset.getString("Name"));
+                System.out.println(rset.getString("country.Name")+rset.getString("Total population")+rset.getString("Population in cities")+rset.getString("Population outside cities"));
             }
         }
         catch (Exception e) {System.out.println(e.getMessage());}
@@ -748,14 +748,14 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect="Select sum(population)\n" +
-                    "from country";
+            String strSelect="Select sum(Population) AS \"Population Sum\"\n" +
+                    "From country";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             while (rset.next())
             {
-                System.out.println(rset.getString("Name"));
+                System.out.println(rset.getString("Population Sum"));
             }
         }
         catch (Exception e) {System.out.println(e.getMessage());}
@@ -767,15 +767,15 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect="Select sum(population)\n" +
-                    "from country\n" +
-                    "where continent = "+ Continent;
+            String strSelect="Select sum(Population) AS \"Population Sum\"\n" +
+                    "From country\n" +
+                    "Where Continent = "+ Continent;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             while (rset.next())
             {
-                System.out.println(rset.getString("Name"));
+                System.out.println(rset.getString("Population Sum"));
             }
         }
         catch (Exception e) {System.out.println(e.getMessage());}
@@ -787,15 +787,15 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect="Select sum(population)\n" +
-                    "from country\n" +
-                    "where region = " + Region;
+            String strSelect="Select sum(population) AS \"Population Sum\"\n" +
+                    "From country\n" +
+                    "Where Region = " + Region;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             while (rset.next())
             {
-                System.out.println(rset.getString("Name"));
+                System.out.println(rset.getString("Population Sum"));
             }
         }
         catch (Exception e) {System.out.println(e.getMessage());}
@@ -807,15 +807,15 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect="Select sum(population)\n" +
-                    "from country\n" +
-                    "where name = " + Country;
+            String strSelect="Select sum(population) AS \"Population Sum\"\n" +
+                    "From country\n" +
+                    "Where Name = " + Country;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             while (rset.next())
             {
-                System.out.println(rset.getString("Name"));
+                System.out.println(rset.getString("Population Sum"));
             }
         }
         catch (Exception e) {System.out.println(e.getMessage());}
@@ -827,15 +827,15 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect="Select sum(Distinct country.population)\n" +
-                    "from country join city on country.code = city.countrycode\n" +
+            String strSelect="Select sum(Distinct country.population) AS \"Population Sum\"\n" +
+                    "from country join city on country.code = city.CountryCode\n" +
                     "where district = " + District;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             while (rset.next())
             {
-                System.out.println(rset.getString("Name"));
+                System.out.println(rset.getString("Population Sum"));
             }
         }
         catch (Exception e) {System.out.println(e.getMessage());}
@@ -848,15 +848,15 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect="Select sum(Distinct population)\n" +
+            String strSelect="Select sum(Distinct population) AS \"Population Sum\"\n" +
                     "from city\n" +
-                    "where name = " + City;
+                    "where Name = " + City;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             while (rset.next())
             {
-                System.out.println(rset.getString("Name"));
+                System.out.println(rset.getString("Population Sum"));
             }
         }
         catch (Exception e) {System.out.println(e.getMessage());}
@@ -868,16 +868,16 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect="Select Language, Sum(percentage)\n" +
-                    "From CountryLanguage \n" +
-                    "Where language = \"Chinese\" OR language = \"English\" OR language = \"Hindi\" OR language = \"Spanish\" OR language = \"Arabic\"\n" +
+            String strSelect="Select Language, Sum(percentage)  AS \"Percentage\"\n" +
+                    "From countrylanguage \n" +
+                    "Where Language = \"Chinese\" OR Language = \"English\" OR Language = \"Hindi\" OR Language = \"Spanish\" OR Language = \"Arabic\"\n" +
                     "Group by Language\n";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             while (rset.next())
             {
-                System.out.println(rset.getString("Name"));
+                System.out.println(rset.getString("Percentage"));
             }
         }
         catch (Exception e) {System.out.println(e.getMessage());}
