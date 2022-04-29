@@ -36,7 +36,7 @@ public class MyTest {
 
             stmt.executeQuery(strSelect);
 
-            strSelect = "SHOW TABLES" +
+            strSelect = "SHOW TABLES\n" +
                     "FROM world;";
 
             ResultSet rset = stmt.executeQuery(strSelect);
