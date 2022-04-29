@@ -22,7 +22,7 @@ public class App
     /**
      * Connection to MySQL database.
      */
-    private Connection con = null;
+    public Connection con = null;
     public static void main(String[] args)
     {
         // Create new Application

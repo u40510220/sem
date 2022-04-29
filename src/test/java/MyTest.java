@@ -23,10 +23,37 @@ public class MyTest {
         // Connect to database
         app = new App();
         app.connect();
-    }
-    @Test
-    void IntegrationDB() {
 
+    }
+    @BeforeAll
+    static void IntegrationDB() throws SQLException {
+        boolean tableFound=false;
+        if(app.con != null) {
+
+            Statement stmt = app.con.createStatement();
+
+            String strSelect = "CREATE TABLE world.s(id);";
+
+            stmt.executeQuery(strSelect);
+
+            strSelect = "SHOW TABLES" +
+                    "FROM world;";
+
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            while (rset.next()) {
+                if(rset.getString("Tables_in_world")=="s"){
+                    tableFound=true;
+
+                    stmt = app.con.createStatement();
+
+                    strSelect = "DROP TABLE world.s;";
+
+                    stmt.executeQuery(strSelect);
+                }
+            }
+        }
+        assertEquals(tableFound, true);
     }
 
     @Test
@@ -201,7 +228,6 @@ public class MyTest {
     @AfterAll
     static void finalise() {
         app.disconnect();
-
     }
 
 }
